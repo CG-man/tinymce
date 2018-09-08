@@ -37,7 +37,7 @@ var determine = function (input, column, step, tableSize) {
         //   var newNext = Math.max(tableSize.minCellWidth(), result[next] - step);
           return zero(result.slice(0, index)).concat([step]).concat(zero(result.slice(next)));
         } else {
-          const newThis = Math.max(tableSize.minCellWidth(), result[index] + step);
+          var newThis = Math.max(tableSize.minCellWidth(), result[index] + step);
           // var diffx = result[index] - newThis;
           return zero(result.slice(0, index)).concat([newThis - result[index]]).concat(zero(result.slice(next)));
         }
