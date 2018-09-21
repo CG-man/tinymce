@@ -13,6 +13,7 @@ import InsertTable from '../actions/InsertTable';
 import { Arr, Option, Cell } from '@ephox/katamari';
 import { Element } from '@ephox/sugar';
 import { HTMLElement } from '@ephox/dom-globals';
+import setStyleByOut from '../actions/SetTdStyle';
 
 const getClipboardRows = (clipboardRows): HTMLElement[] => {
   return clipboardRows.get().fold(function () {
@@ -35,7 +36,8 @@ const getApi = (editor: Editor, clipboardRows: Cell<Option<any>>) => {
       return InsertTable.insert(editor, columns, rows);
     },
     setClipboardRows: (rows: HTMLElement[]) => setClipboardRows(rows, clipboardRows),
-    getClipboardRows: () => getClipboardRows(clipboardRows)
+    getClipboardRows: () => getClipboardRows(clipboardRows),
+    setStyleByOut: (styles, target) => setStyleByOut.setStyle(editor, styles)
   };
 };
 
