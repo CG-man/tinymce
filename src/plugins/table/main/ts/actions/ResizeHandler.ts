@@ -104,10 +104,12 @@ export const ResizeHandler = function (editor: Editor): ResizeHandler {
   interface CellSize { cell: HTMLTableCellElement; width: string; }
 
   editor.on('ObjectResized', function (e) {
+    // debugger;
     const targetElm = e.target;
     if (isTable(targetElm)) {
       const table = targetElm;
-
+      // 表格推拉式，最外层不能有宽高属性
+      table.removeAttribute('style');
       if (percentageBasedSizeRegex.test(startRawW)) {
         const percentW = parseFloat(percentageBasedSizeRegex.exec(startRawW)[1]);
         const targetPercentW = e.width * percentW / startW;
@@ -116,7 +118,7 @@ export const ResizeHandler = function (editor: Editor): ResizeHandler {
         const newCellSizes: CellSize[] = [];
         Tools.each(table.rows, function (row: HTMLTableRowElement) {
           Tools.each(row.cells, function (cell: HTMLTableCellElement) {
-            const width = editor.dom.getStyle(cell, 'width', true);
+            const width = editor.dom.getStyle(cell, 'width', false);
             newCellSizes.push({
               cell,
               width

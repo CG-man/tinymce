@@ -1,3 +1,4 @@
+
 /**
  * Demo.js
  *
@@ -35,10 +36,11 @@ el.addEventListener('dblclick', function () {
 const initFn = function () {
   tinymce.init({
     selector: 'div.tinymce',
+    language: 'zh_CN',
     skin_url: '../../../../../js/tinymce/skins/lightgray',
     toolbar: 'table code',
     theme: 'inlite',
-    language_url: 'https://static.speiyou.com/tinymce/4.7.13/langs/zh_CN.js',
+    // language_url: '../../../../../js/tinymce/text/zh-CN.js',
     plugins: 'image media table paste contextmenu textpattern textcolor',
     insert_toolbar: '',
     selection_toolbar: 'talfontselect talfontsizeselect | bold italic underline dotted | forecolor backcolor | alignleft aligncenter alignright alignjustify  | outdent indent | removeformat',

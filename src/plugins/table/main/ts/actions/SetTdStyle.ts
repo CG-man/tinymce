@@ -37,7 +37,6 @@ const applyDataToElement = (editor: Editor, data: StylesMap) => {
     Tools.each(cells, function (cellElm: HTMLTableCellElement) {
       // 更新样式有待优化
       const styleObj = editor.dom.parseStyle(data.style);
-      // console.log(styleObj);
       Object.keys(styleObj).forEach((key) => {
         setStyle(cellElm, key, '' + styleObj[key] + '');
       });
