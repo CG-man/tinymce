@@ -268,6 +268,10 @@ module.exports = function (grunt) {
             dest: 'js/tinymce/langs/readme.md'
           },
           {
+            src: 'src/core/main/text/zh_CN.js',
+            dest: 'js/tinymce/langs/zh_CN.js'
+          },
+          {
             src: 'LICENSE.TXT',
             dest: 'js/tinymce/license.txt'
           }

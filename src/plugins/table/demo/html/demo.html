@@ -2,11 +2,27 @@
 <html>
   <head>
     <title>Table Demo Page</title>
-    <!-- <style>
+    <style>
       table {
-        width: auto !important;
+        word-wrap: break-word;
+        word-break: break-all;
+        border-spacing: 0px;
+        border-collapse: collapse;
       }
-    </style> -->
+      table td {
+        border: 1px solid red;
+      }
+      div.tinymce {
+        position: relative;
+        display: inline-block;
+        width: auto;
+        height: auto;
+        border: 1px solid red;
+      }
+      div.setting-wrapper {
+        margin-top: 20px;
+      }
+    </style>
   </head>
 
   <body>
@@ -15,19 +31,19 @@
         <div name="" id="" cols="30" rows="10" class="tinymce">
           <table>
               <tbody>
-                <tr style="height: 18px;">
+                <tr>
                   <td style="width: 250px; height: 18px;">z</td>
                   <td style="width: 250px; height: 18px;">x</td>
                   <td style="width: 250px; height: 18px;">y</td>
                   <td style="width: 250px; height: 18px;">w</td>
                 </tr>
-                <tr style="height: 18px;">
+                <tr>
                   <td style="width: 250px; height: 18px;">u</td>
                   <td style="width: 250px; height: 18px;">i</td>
                   <td style="width: 250px; height: 18px;">p</td>
                   <td style="width: 250px; height: 18px;">o</td>
                 </tr>
-                <tr style="height: 18px;">
+                <tr>
                   <td style="width: 250px; height: 18px;">l</td>
                   <td style="width: 250px; height: 18px;">m</td>
                   <td style="width: 250px; height: 18px;">n</td>
@@ -36,8 +52,37 @@
               </tbody>
           </table>
         </div>
+        <div class="setting-wrapper">
+            <input type="text" placeholder="改变td的宽度" onchange="changeTable(event, 'width')">
+            <input type="text" placeholder="改变td的高度" onchange="changeTable(event, 'height')">
+            <input type="text" placeholder="改变padding" onchange="changeTable(event, 'padding')">
+            <input type="text" placeholder="改变边框的宽度" onchange="changeTable(event, 'border-width')">
+            <input type="text" placeholder="改变边框的颜色" onchange="changeTable(event, 'border-color')">
+            <input type="text" placeholder="改变边框的样" onchange="changeTable(event, 'border-style')">
+            <input type="text" placeholder="改变字体" onchange="changeTable(event, 'font-family')">
+            <input type="text" placeholder="改变类名" onchange="changeTable(event, 'classname')">
+        </div>
     </div>
     <script src="../../../../../js/tinymce/tinymce.js"></script>
     <script src="../../../../../scratch/demos/plugins/table/demo.js"></script>
   </body>
+  <script>
+    function changeTable (event, type) {
+      const val = event.target.value
+      let style = ''
+      if (document.getElementsByClassName('tinymce') && document.getElementsByClassName('tinymce').editor) {
+        const editor = document.getElementsByClassName('tinymce').editor
+        const plugins = editor.plugins
+        if (plugins.table) {
+          let classname = 'test'
+          if (type === 'classname') {
+            classname = val
+          } else {
+            style += type + ":" + ''+ val + '' + 'px;'
+          }
+          plugins.table.setStyleByOut({style, classname})
+        }
+      }
+    }
+  </script>
 </html>
