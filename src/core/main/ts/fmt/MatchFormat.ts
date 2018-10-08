@@ -144,7 +144,8 @@ const match = function (editor, name, vars, node) {
 
   // Check selected node
   node = editor.selection.getNode();
-  if (matchParents(editor, node, name, vars)) {
+  // ignore image tag
+  if (!FormatUtils.isInlineBlock(node) && matchParents(editor, node, name, vars)) {
     return true;
   }
 
