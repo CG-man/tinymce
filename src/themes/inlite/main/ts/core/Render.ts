@@ -102,17 +102,17 @@ const repositionPanel = function (editor: Editor, panel: InlitePanel) {
   };
 };
 
-const ignoreWhenFormIsVisible = function (editor: Editor, panel: InlitePanel, f: () => void) {
-  return function () {
-    if (!editor.removed && !panel.inForm()) {
-      f();
-    }
-  };
-};
+// const ignoreWhenFormIsVisible = function (editor: Editor, panel: InlitePanel, f: () => void) {
+//   return function () {
+//     if (!editor.removed && !panel.inForm()) {
+//       f();
+//     }
+//   };
+// };
 
 const bindContextualToolbarsEvents = function (editor: Editor, panel: InlitePanel) {
   const throttledTogglePanel = Delay.throttle(togglePanel(editor, panel), 0);
-  const throttledTogglePanelWhenNotInForm = Delay.throttle(ignoreWhenFormIsVisible(editor, panel, togglePanel(editor, panel)), 0);
+  // const throttledTogglePanelWhenNotInForm = Delay.throttle(ignoreWhenFormIsVisible(editor, panel, togglePanel(editor, panel)), 0);
   const reposition = repositionPanel(editor, panel);
 
   editor.on('blur hide ObjectResizeStart', panel.hide);

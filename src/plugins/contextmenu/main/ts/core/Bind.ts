@@ -11,6 +11,7 @@
 import Settings from '../api/Settings';
 import Coords from './Coords';
 import ContextMenu from '../ui/ContextMenu';
+import { document } from '@ephox/dom-globals';
 
 const isNativeOverrideKeyEvent = function (editor, e) {
   return e.ctrlKey && !Settings.shouldNeverUseNative(editor);
