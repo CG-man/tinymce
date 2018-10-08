@@ -161,7 +161,7 @@ const getTextDecoration = function (dom, node) {
 
 const getParents = function (dom, node, selector?) {
   // fix image float style conflict with parentNode text-align attr
-  if (isInlineBlock(node) && (dom.getStyle(node, 'float'))) {
+  if (isInlineBlock(node)) {
     return [node]
   }
   return dom.getParents(node, selector, dom.getRoot());
