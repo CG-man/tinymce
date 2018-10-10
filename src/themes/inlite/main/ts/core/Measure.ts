@@ -27,12 +27,13 @@ const toAbsolute = function (rect: GeomRect): GeomRect {
 
 const measureElement = function (elm: HTMLElement) {
   const clientRect = elm.getBoundingClientRect();
-
   return toAbsolute({
     x: clientRect.left,
     y: clientRect.top,
-    w: Math.max(elm.clientWidth, elm.offsetWidth),
-    h: Math.max(elm.clientHeight, elm.offsetHeight)
+    w: clientRect.width,
+    h: clientRect.height
+    // w: Math.max(elm.clientWidth, elm.offsetWidth),
+    // h: Math.max(elm.clientHeight, elm.offsetHeight)
   });
 };
 

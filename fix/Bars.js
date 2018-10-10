@@ -46,13 +46,13 @@ var refreshRow = function (wire, rowPositions, position, tableWidth) {
 };
 var refreshGrid = function (wire, table, rows, cols, hdirection, vdirection) {
     var position = Location.absolute(table);
-    var clienRectWidth = table.dom().getBoundingClientRect().width
-    var width = Width.getOuter(table)
-    var ratio = clienRectWidth/ width || 1
+    var rect = table.dom().getBoundingClientRect()
+    var width = rect.width // Width.getOuter(table)
+    var height = rect.height // Height.getOuter(table)
     var rowPositions = rows.length > 0 ? hdirection.positions(rows, table) : [];
-    refreshRow(wire, rowPositions, position, width * ratio);
+    refreshRow(wire, rowPositions, position, width);
     var colPositions = cols.length > 0 ? vdirection.positions(cols, table) : [];
-    refreshCol(wire, colPositions, position, Height.getOuter(table));
+    refreshCol(wire, colPositions, position, height);
 };
 var refresh = function (wire, table, hdirection, vdirection) {
     clear(wire);
