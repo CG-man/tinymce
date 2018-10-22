@@ -19,6 +19,7 @@ const initInstanceCallback = function (editor) {
   });
   // 失去焦点监听
   editor.on('blur', function (e) {
+    // editor.destroy();
   });
   // 注册快捷键
   // FIXME: mac下快捷键使用command也注册不上，临时先兼容windows

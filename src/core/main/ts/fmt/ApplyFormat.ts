@@ -61,6 +61,19 @@ const applyFormat = function (ed: Editor, name: string, vars?, node?) {
 
       each(fmt.styles, function (value, name) {
         dom.setStyle(elm, name, FormatUtils.replaceVars(value, vars));
+        let parent = elm.parentNode;
+        let parentsTextAlignLst = parent.style.textAlignLast;
+        do {
+          parent = parent.parentNode;
+          if (parent.nodeName !== 'BODY') {
+            parentsTextAlignLst = parent.style.textAlignLast;
+          } else {
+            parentsTextAlignLst = value;
+          }
+        } while (parentsTextAlignLst === '');
+        // 添加text-align-last样式属性
+        // parentsTextAlignLst = parentsTextAlignLst &&  parentsTextAlignLst !== 'unset' ? parentsTextAlignLst : value;
+        dom.setStyle(elm, 'text-align-last', value);
       });
 
       // Needed for the WebKit span spam bug
