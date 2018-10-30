@@ -228,7 +228,7 @@ const compileSchema = function (type) {
   add('a', 'href target rel media hreflang type', phrasingContent);
   add('q', 'cite', phrasingContent);
   add('ins del', 'cite datetime', flowContent);
-  add('img', 'src sizes srcset alt usemap ismap width height');
+  add('img', 'src sizes srcset alt usemap ismap width height data');
   add('iframe', 'src name width height', flowContent);
   add('embed', 'src type width height');
   add('object', 'data type typemustmatch name usemap form width height', [flowContent, 'param'].join(' '));
@@ -438,7 +438,7 @@ function Schema(settings?) {
     'meta param embed source wbr track');
   boolAttrMap = createLookupTable('boolean_attributes', 'checked compact declare defer disabled ismap multiple nohref noresize ' +
     'noshade nowrap readonly selected autoplay loop controls');
-  nonEmptyElementsMap = createLookupTable('non_empty_elements', 'td th iframe video audio object ' +
+  nonEmptyElementsMap = createLookupTable('non_empty_elements', 'td th iframe video audio object span ' +
     'script pre code', shortEndedElementsMap);
   moveCaretBeforeOnEnterElementsMap = createLookupTable('move_caret_before_on_enter_elements', 'table', nonEmptyElementsMap);
   textBlockElementsMap = createLookupTable('text_block_elements', 'h1 h2 h3 h4 h5 h6 p div address pre form ' +
