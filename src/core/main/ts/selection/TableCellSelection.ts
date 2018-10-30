@@ -19,6 +19,12 @@ const getCellsFromRanges = function (ranges) {
 
 const getCellsFromElement = function (elm) {
   const selectedCells = SelectorFilter.descendants(elm, 'td[data-mce-selected],th[data-mce-selected]');
+  // 表格全选删除只删除内容不删除表格
+  if (selectedCells && selectedCells.length <= 0) {
+    elm.dom().querySelectorAll('td[data-mce-style]').forEach((td) => {
+      td.innerText = '';
+    });
+  }
   return selectedCells;
 };
 

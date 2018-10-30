@@ -55,7 +55,8 @@ const isEverythingSelected = function (root, rng) {
 };
 
 const emptyEditor = function (editor) {
-  editor.setContent('');
+  // editor.selection.setRng()
+  // editor.setContent('');
   editor.selection.setCursorLocation();
   return true;
 };
@@ -63,6 +64,7 @@ const emptyEditor = function (editor) {
 const deleteRange = function (editor) {
   const rootNode = Element.fromDom(editor.getBody());
   const rng = editor.selection.getRng();
+  // return deleteRangeMergeBlocks(rootNode, editor.selection);
   return isEverythingSelected(rootNode, rng) ? emptyEditor(editor) : deleteRangeMergeBlocks(rootNode, editor.selection);
 };
 
