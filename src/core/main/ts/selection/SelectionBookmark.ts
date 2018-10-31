@@ -85,6 +85,10 @@ const bookmarkToNativeRng = function (bookmark) {
 };
 
 const store = function (editor) {
+  // FIXME: 临时解决页面刷新创建文本报错的问题， 具体的原因还有待查找
+  if (!editor.getBody()) {
+    return false;
+  }
   const newBookmark = shouldStore(editor) ? getBookmark(Element.fromDom(editor.getBody())) : Option.none();
 
   editor.bookmark = newBookmark.isSome() ? newBookmark : editor.bookmark;
