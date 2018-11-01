@@ -754,7 +754,7 @@ function Schema(settings?) {
 
     // Remove these if they have no attributes
     each(split('span'), function (name) {
-      elements[name].removeEmptyAttrs = true;
+      elements[name].removeEmptyAttrs = false;
     });
 
     // Remove these by default
