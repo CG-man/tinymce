@@ -6,7 +6,7 @@ Building TinyMCE
 Install [Node.js](https://nodejs.org/en/) on your system.
 Clone this repository on your system
 ```
-$ git clone https://github.com/tinymce/tinymce.git
+$ git clone https://github.com/TALFE/tinymce.git
 ```
 Open a console and go to the project directory.
 ```
