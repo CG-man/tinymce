@@ -55,8 +55,7 @@ const isEverythingSelected = function (root, rng) {
 };
 
 const emptyEditor = function (editor) {
-  // editor.selection.setRng()
-  // editor.setContent('');
+  editor.setContent('');
   editor.selection.setCursorLocation();
   return true;
 };
