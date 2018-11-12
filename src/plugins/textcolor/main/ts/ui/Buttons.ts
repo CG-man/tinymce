@@ -13,6 +13,7 @@ import Tools from 'tinymce/core/api/util/Tools';
 import Settings from '../api/Settings';
 import TextColor from '../core/TextColor';
 import ColorPickerHtml from './ColorPickerHtml';
+import { document } from '../../../../../../node_modules/@ephox/dom-globals';
 
 const setDivColor = function setDivColor(div, value) {
   div.style.background = value;
@@ -22,7 +23,7 @@ const setDivColor = function setDivColor(div, value) {
 const onButtonClick = function (editor) {
   return function (e) {
     const ctrl = e.control;
-
+    // end
     if (ctrl._color) {
       editor.execCommand('mceApplyTextcolor', ctrl.settings.format, ctrl._color);
     } else {
@@ -113,6 +114,39 @@ const renderColorPicker = function (editor, foreColor) {
   };
 };
 
+const onCutcomButtonClick = function (editor) {
+  return function (e) {
+    const ctrl = e.control;
+    const format = ctrl.settings.format;
+    // 获取input = color的dom
+    let colorTarget = document.getElementById(`custom-color-${format}`);
+    // 判断元素是否存在
+    if (!colorTarget) {
+      const colorinput = document.createElement('input');
+      colorinput.setAttribute('type', 'color');
+      colorinput.setAttribute('class', `custom-color-button`);
+      colorinput.setAttribute('id', `custom-color-${format}`);
+      document.querySelector('body').appendChild(colorinput);
+    }
+    // 重新获取颜色dom
+    colorTarget = colorTarget || document.getElementById(`custom-color-${format}`);
+    colorTarget.setAttribute('data-type', format);
+    // 设置颜色值
+    const applyColor = function (ev) {
+      const color = ev.target.value;
+      if (color) {
+        editor.execCommand('mceApplyTextcolor', ctrl.settings.format, color);
+      } else {
+        editor.execCommand('mceRemoveTextcolor', ctrl.settings.format);
+      }
+    };
+    // 监听元素事件
+    colorTarget.addEventListener('input', (e) => { applyColor(e); }, false);
+    colorTarget.addEventListener('change', (e) => { applyColor(e); }, false);
+    colorTarget.click();
+  };
+};
+
 const register = function (editor) {
   editor.addButton('forecolor', {
     type: 'colorbutton',
@@ -138,6 +172,22 @@ const register = function (editor) {
       onclick: onPanelClick(editor, Settings.getBackColorCols(editor))
     },
     onclick: onButtonClick(editor)
+  });
+
+  editor.addButton('customforecolor', {
+    type: 'menubutton',
+    icon: 'forecolor',
+    tooltip: '自定义文字颜色',
+    format: 'forecolor',
+    onclick: onCutcomButtonClick(editor)
+  });
+
+  editor.addButton('custombackecolor', {
+    type: 'menubutton',
+    icon: 'backcolor',
+    tooltip: '自定义背景色',
+    format: 'hilitecolor',
+    onclick: onCutcomButtonClick(editor)
   });
 };
 

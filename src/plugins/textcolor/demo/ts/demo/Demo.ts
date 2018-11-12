@@ -1,4 +1,3 @@
-
 /**
  * Demo.js
  *
@@ -40,12 +39,11 @@ const initFn = function () {
     selector: 'div.tinymce',
     language: 'zh_CN',
     skin_url: '../../../../../js/tinymce/skins/lightgray',
-    toolbar: 'table code',
+    // toolbar: 'customforecolor custombackcolor',
     theme: 'inlite',
-    // language_url: '../../../../../js/tinymce/text/zh-CN.js',
     plugins: 'image media table paste contextmenu textpattern textcolor',
     insert_toolbar: '',
-    selection_toolbar: 'talfontselect talfontsizeselect | bold italic underline dotted | forecolor backcolor | alignleft aligncenter alignright alignjustify  | outdent indent | removeformat',
+    selection_toolbar: 'talfontselect talfontsizeselect | bold italic underline dotted | forecolor backcolor customforecolor custombackecolor | alignleft aligncenter alignright alignjustify  | outdent indent | example | removeformat',
     paste_data_images: true,
     paste_webkit_styles: 'color font font-size background font-family',
     inline: true,
