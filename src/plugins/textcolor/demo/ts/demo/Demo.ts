@@ -41,7 +41,7 @@ const initFn = function () {
     skin_url: '../../../../../js/tinymce/skins/lightgray',
     // toolbar: 'customforecolor custombackcolor',
     theme: 'inlite',
-    plugins: 'image media table paste contextmenu textpattern textcolor',
+    plugins: 'image media table paste contextmenu textpattern textcolor colorpicker',
     insert_toolbar: '',
     selection_toolbar: 'talfontselect talfontsizeselect | bold italic underline dotted | forecolor backcolor customforecolor custombackecolor | alignleft aligncenter alignright alignjustify  | outdent indent | example | removeformat',
     paste_data_images: true,
@@ -53,6 +53,8 @@ const initFn = function () {
     contextmenu: 'table inserttable | pagebreak | cell row column deletetable',
     table_responsive_width: false,
     init_instance_callback: initInstanceCallback,
+    // color_picker_callback: (params) => {
+    // },
   }).then(function (editors) {
     document.getElementsByClassName('tinymce').editor = editors[0];
   });
