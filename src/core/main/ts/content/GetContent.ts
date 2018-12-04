@@ -48,7 +48,8 @@ const getContentFromBody = (editor: Editor, args: GetContentArgs, body: HTMLElem
     editor.fire('BeforeGetContent', args);
   }
 
-  if (args.format === 'raw') {
+  // rawImg表示需要进行img的换行替换,但是rawImg并不会在后续的操作中将img中的base64替换为blob:http://
+  if (args.format === 'raw' || args.format === 'rawImg') {
     content = Tools.trim(TrimHtml.trimExternal(editor.serializer, body.innerHTML));
   } else if (args.format === 'text') {
     content = Zwsp.trim(body.innerText || body.textContent);
