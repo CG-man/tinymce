@@ -104,19 +104,32 @@ export const ResizeHandler = function (editor: Editor): ResizeHandler {
   interface CellSize { cell: HTMLTableCellElement; width: string; }
 
   editor.on('ObjectResized', function (e) {
-    // debugger;
     const targetElm = e.target;
     if (isTable(targetElm)) {
       const table = targetElm;
       // 表格推拉式，最外层不能有宽高属性
-      table.removeAttribute('style');
+      let isRichTag = false;
+      const getRichTableNode = function (targetNode) {
+        const parent = targetNode.parentElement;
+        if (parent) {
+          const isPageItemWrap = parent.className ? parent.className.indexOf('page-item-wrap') !== -1 : false;
+          isRichTag = parent.className ? parent.className.indexOf('rich_wrapper_table') !== -1 : false;
+          if (!isPageItemWrap && !isRichTag) {
+            getRichTableNode(parent);
+          }
+        }
+      };
+      getRichTableNode(table);
+      if (!isRichTag) {
+        table.removeAttribute('style');
+      }
       if (percentageBasedSizeRegex.test(startRawW)) {
         const percentW = parseFloat(percentageBasedSizeRegex.exec(startRawW)[1]);
         const targetPercentW = e.width * percentW / startW;
         editor.dom.setStyle(table, 'width', targetPercentW + '%');
       } else {
         const newCellSizes: CellSize[] = [];
-        Tools.each(table.rows, function (row: HTMLTableRowElement) {
+        Tools.each(table.rows, function (row: HTMLTableRowElement, index) {
           Tools.each(row.cells, function (cell: HTMLTableCellElement) {
             const width = editor.dom.getStyle(cell, 'width', false);
             newCellSizes.push({

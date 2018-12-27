@@ -259,10 +259,25 @@ const ControlSelection = (selection: Selection, editor: Editor): ControlSelectio
         }
       }
     };
+    const getRichTableNode = function (targetNode, width?: number, height?: number) {
+      const parent = targetNode.parentElement;
+      if (parent) {
+        const isPageItemWrap = parent.className ? parent.className.indexOf('page-item-wrap') !== -1 : false;
+        const isRichTag = parent.className ? parent.className.indexOf('rich_wrapper_table') !== -1 : false;
+        if (isRichTag) {
+          parent.style.width = width + 'px';
+          parent.style.height = height + 'px';
+        }
+        if (!isPageItemWrap) {
+          getRichTableNode(parent, width, height);
+        }
+      }
+    };
 
     // Set width/height properties
     setSizeProp('width', width);
     setSizeProp('height', height);
+    // getRichTableNode(selectedElm, width, height);
 
     dom.unbind(editableDoc, 'mousemove', resizeGhostElement);
     dom.unbind(editableDoc, 'mouseup', endGhostResize);

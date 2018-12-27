@@ -3,6 +3,11 @@
   <head>
     <title>Table Demo Page</title>
     <style>
+      .rich_wrapper_table {
+        width: 600px;
+        height: 300px;
+        border: 3px solid yellowgreen;
+      }
       table {
         word-wrap: break-word;
         word-break: break-all;
@@ -28,30 +33,32 @@
   <body>
   <h2>Table Demo Page</h2>
     <div id="ephox-ui">
-        <div name="" id="" cols="30" rows="10" class="tinymce">
-          <table>
-              <tbody>
-                <tr>
-                  <td style="width: 250px; height: 18px;">z</td>
-                  <td style="width: 250px; height: 18px;">x</td>
-                  <td style="width: 250px; height: 18px;">y</td>
-                  <td style="width: 250px; height: 18px;">w</td>
-                </tr>
-                <tr>
-                  <td style="width: 250px; height: 18px;">u</td>
-                  <td style="width: 250px; height: 18px;">i</td>
-                  <td style="width: 250px; height: 18px;">p</td>
-                  <td style="width: 250px; height: 18px;">o</td>
-                </tr>
-                <tr>
-                  <td style="width: 250px; height: 18px;">l</td>
-                  <td style="width: 250px; height: 18px;">m</td>
-                  <td style="width: 250px; height: 18px;">n</td>
-                  <td style="width: 250px; height: 18px;">b</td>
-                </tr>
-              </tbody>
-          </table>
-        </div>
+        <!-- <div class="rich_wrapper_table"> -->
+            <div class="tinymce">
+                <table>
+                    <tbody>
+                      <tr>
+                        <td style="width: 250px; height: 18px;">z</td>
+                        <td style="width: 250px; height: 18px;">x</td>
+                        <td style="width: 250px; height: 18px;">y</td>
+                        <td style="width: 250px; height: 18px;">w</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 250px; height: 18px;">u</td>
+                        <td style="width: 250px; height: 18px;">i</td>
+                        <td style="width: 250px; height: 18px;">p</td>
+                        <td style="width: 250px; height: 18px;">o</td>
+                      </tr>
+                      <tr>
+                        <td style="width: 250px; height: 18px;">l</td>
+                        <td style="width: 250px; height: 18px;">m</td>
+                        <td style="width: 250px; height: 18px;">n</td>
+                        <td style="width: 250px; height: 18px;">b</td>
+                      </tr>
+                    </tbody>
+                </table>
+              </div>
+        <!-- </div> -->
         <div class="setting-wrapper">
             <input type="text" placeholder="改变td的宽度" onchange="changeTable(event, 'width')">
             <input type="text" placeholder="改变td的高度" onchange="changeTable(event, 'height')">
