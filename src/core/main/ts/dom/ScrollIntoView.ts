@@ -23,6 +23,24 @@ const getPos = function (elm: HTMLElement) {
     x += offsetParent.offsetLeft || 0;
     y += offsetParent.offsetTop || 0;
     offsetParent = offsetParent.offsetParent as HTMLElement;
+    if (!offsetParent) {
+      break;
+    }
+    const {
+      style: { transform },
+    } = offsetParent;
+    const scaleX =
+      transform && transform.includes('scale3d')
+      ? Number(transform.match(/scale3d\(([\d.]*)/)[1])
+      : 1;
+    const scaleY =
+      transform && transform.includes('scale3d')
+      ? Number(transform.match(/scale3d\([\d.]*, ([\d.]*)/)[1])
+      : 1;
+    if (scaleX || scaleY) {
+      x *= scaleX;
+      y *= scaleY;
+    }
   }
 
   return { x, y };
